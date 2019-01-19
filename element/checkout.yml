@@ -1,0 +1,10 @@
+-
+  type: div
+  attribute:
+    id: dibs-complete-checkout
+    data-checkout-key: rs:checkout-key
+  innerHTML:
+-
+  type: script
+  innerHTML: PluginDibsEasy_v1.internCheckout();
+

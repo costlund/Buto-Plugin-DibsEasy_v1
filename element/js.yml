@@ -1,0 +1,19 @@
+-
+  type: script
+  settings:
+    enabled: rs:test
+  attribute:
+    src: https://test.checkout.dibspayment.eu/v1/checkout.js?v=1
+-
+  type: script
+  settings:
+    disabled: rs:test
+  attribute:
+    src: https://checkout.dibspayment.eu/v1/checkout.js?v=1
+-
+  type: widget
+  data:
+    plugin: wf/embed
+    method: js
+    data:
+      file: /plugin/dibs/easy_v1/js/function.js
