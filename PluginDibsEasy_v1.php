@@ -24,6 +24,30 @@ class PluginDibsEasy_v1{
     $element->setByTag($data->get('data/account'), 'rs', true);
     wfDocument::renderElement($element->get());
   }
+  public function widget_get_payment($data){
+    $data = new PluginWfArray($data);
+    wfHelp::dump($this->getPayment($data->get('data')), true);
+  }
+  /**
+   * Get payment from DIBS.
+   * @param array $data
+   * @return array
+   */
+  public function getPayment($data = array()){
+    $data = new PluginWfArray($data);
+    $url = 'https://api.dibspayment.eu/v1/payments/';
+    if($data->get('test')){
+      $url = 'https://test.api.dibspayment.eu/v1/payments/';
+    }
+    $url .= $data->get('paymentID');
+    $ch=curl_init($url);
+    curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "GET");
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_HTTPHEADER, array( 'Content-Type: application/json', 'Accept: application/json', 'Authorization: '.$data->get('secret-key')));
+    $result=curl_exec($ch);
+    $result = json_decode($result, true);
+    return $result;
+  }
   /**
    * Page loaded via ajax return paymentId in json.
    */
@@ -39,7 +63,7 @@ class PluginDibsEasy_v1{
     $http_header = array('Content-Type: application/json','Accept: application/json','Authorization: '.$data->get('account/secret-key'));
     $data = json_encode($data->get());
     $settings = $this->getSettings();
-    $url = 'https://api.dibspayment.eu';
+    $url = 'https://api.dibspayment.eu/v1/payments';
     if($settings->get('data/test')){
       $url = 'https://test.api.dibspayment.eu/v1/payments';
     }

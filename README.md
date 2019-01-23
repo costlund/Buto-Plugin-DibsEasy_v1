@@ -20,7 +20,7 @@ plugin:
 
 
 
-In html head section.
+In html head section. It will include Javascript from dibs depending on test parameter and also this plugin Javascript.
 ```
 -
   type: widget
@@ -29,7 +29,7 @@ In html head section.
     method: js
 ```
 
-Checkout widget.
+Checkout widget. Play around with data along with Dibs Easy documentation to fit your needs.
 ```
 -
   type: widget
