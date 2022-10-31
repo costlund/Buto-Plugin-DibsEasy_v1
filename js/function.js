@@ -30,10 +30,10 @@ function PluginDibsEasy_v1(){
        * When payment is done.
        * This code is not gonna run because of checkout/url param.
        */
-      window.location = '/PaymentSuccessful';
+      console.log('payment-completed');
+      console.log(response);
+      //window.location = '/PaymentSuccessful';
     });
   }
 }
 var PluginDibsEasy_v1 = new PluginDibsEasy_v1();
-
-
